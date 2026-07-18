@@ -3,8 +3,8 @@
 > Kanban-style backlog, expressed by dependency and priority only — **no effort/day estimates, no owner assignments** (ADR-017, ADR-018). Stage grouping matches [IMPLEMENTATION_ROADMAP.md](./IMPLEMENTATION_ROADMAP.md).
 
 | ID | Priority | Description | Dependencies | Acceptance Criteria | Status |
-|---|---|---|---|---|---|
-| T-001 | P0 | Fork FinRL, verify baseline install and existing example run | — | Clean install; existing FinRL portfolio_allocation example runs unmodified | Not Started |
+|---|---|---|---|---|---|---|
+| T-001 | P0 | Fork FinRL, verify baseline install and existing example run | — | Clean install; existing FinRL portfolio_allocation example runs unmodified | **Completed** — see `BASELINE_ANALYSIS.md` |
 | T-002 | P0 | Finalize fixed universe ticker list + as-of selection date, write `configs/universe.yaml` | — | List + date documented, avoids hindsight bias (ADR-011) | **Open — pending decision** |
 | T-003 | P0 | Replace FinRL ticker config with fixed universe | T-001, T-002 | Data pipeline downloads exactly the fixed universe + Nifty 50 | Not Started |
 | T-004 | P0 | Add data validation (missing dates, schema consistency, versioning) | T-003 | `test_data_pipeline.py` passes | Not Started |
@@ -36,4 +36,4 @@
 
 ---
 
-**Related documents:** [IMPLEMENTATION_ROADMAP.md](./IMPLEMENTATION_ROADMAP.md) · [CURRENT_STATE.md](./CURRENT_STATE.md) · [HANDOFF.md](./HANDOFF.md)
+**Related documents:** [IMPLEMENTATION_ROADMAP.md](./IMPLEMENTATION_ROADMAP.md) · [CURRENT_STATE.md](./CURRENT_STATE.md) · [HANDOFF.md](./HANDOFF.md) · [BASELINE_ANALYSIS.md](../research/BASELINE_ANALYSIS.md)

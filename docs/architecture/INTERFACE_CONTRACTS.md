@@ -308,7 +308,7 @@ class RiskManagementLayer:
         Enforces (authoritatively, regardless of upstream correctness):
           - long-only (all weights >= 0)
           - weights sum to 1.0 (within floating-point tolerance)
-          - exposure caps (see CONFIGURATION.md)
+          - exposure caps (see `configs/*.yaml`)
         Passes `reasoning` and `confidence_summary` through from
         `fused_decision` UNCHANGED (ADR-019) — this method only transforms
         and validates `final_allocation` into `allocation`.
@@ -380,9 +380,9 @@ class EvaluationEngine:
 - Every module boundary above is a Python-level call, not a network/service boundary — a monolithic pipeline (single process), not microservices, unless a future ADR changes that.
 - Every module logs its inputs (summary, not full data), key decisions, and outputs per `CODING_STANDARDS.md`.
 - No module skips a stage (`ARCHITECTURE.md` §3 "golden rules") — every call chain goes through the full sequence: Data → Features → 3 Agents → Confidence Estimation & Calibration → Confidence-Aware Decision Fusion → Risk Management Layer → Final Portfolio Recommendation → Evaluation.
-- Config-driven: every constant referenced above (calibration method choice, epsilon values, exposure caps, reward function parameters, label horizons, prediction-consistency *k*) resolves from `configs/*.yaml`, never hardcoded (`CONFIGURATION.md`).
+- Config-driven: every constant referenced above (calibration method choice, epsilon values, exposure caps, reward function parameters, label horizons, prediction-consistency *k*) resolves from `configs/*.yaml`, never hardcoded.
 - **No field in any dataclass above is typed `Any` or documented as `TBD`**, except the intentionally open-ended `metadata`/`fusion_metadata` auxiliary fields (Design Review success criteria).
 
 ---
 
-**Related documents:** [AGENTS.md](./AGENTS.md) · [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [CONFIDENCE_FUSION.md](./CONFIDENCE_FUSION.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [TESTING_STRATEGY.md](./TESTING_STRATEGY.md) · [CONFIGURATION.md](./CONFIGURATION.md) · [DECISIONS.md](./DECISIONS.md)
+**Related documents:** [AGENTS.md](./AGENTS.md) · [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [CONFIDENCE_FUSION.md](./CONFIDENCE_FUSION.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [TESTING_STRATEGY.md](../implementation/TESTING_STRATEGY.md) · [DECISIONS.md](./DECISIONS.md)

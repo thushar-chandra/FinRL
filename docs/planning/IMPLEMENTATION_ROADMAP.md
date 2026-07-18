@@ -1,8 +1,21 @@
 # IMPLEMENTATION_ROADMAP.md
 
-> Implementation order and dependencies only — **no timeline/day estimates** (ADR-018). No developer/team assignments (ADR-017). Task-level breakdown lives in [TASKS.md](./TASKS.md); current status lives in [CURRENT_STATE.md](./CURRENT_STATE.md); narrative version lives in [SYSTEM_WORKFLOW.md](./SYSTEM_WORKFLOW.md).
+> Implementation order and dependencies only — **no timeline/day estimates** (ADR-018). No developer/team assignments (ADR-017). Task-level breakdown lives in [TASKS.md](./TASKS.md); current status lives in [CURRENT_STATE.md](./CURRENT_STATE.md); narrative version lives in [SYSTEM_WORKFLOW.md](../architecture/SYSTEM_WORKFLOW.md).
 
 ---
+
+## Stage 0 — Baseline Validation **[COMPLETE]**
+
+- **Objective:** Validate the upstream FinRL baseline end-to-end — data pipeline, training, backtesting — to establish a working foundation before CA-MARL implementation.
+- **Completed work:**
+  - FinRL repository forked and baseline install verified (Python 3.11.9, SB3 2.9.0, PyTorch 2.13.0 CPU).
+  - Data pipeline validated: DOW 30 ticker retrieval, Yahoo Finance download, technical indicator computation.
+  - Training validated: A2C, DDPG, PPO (20k timesteps each) — trained models saved to `trained_models/`.
+  - Backtest validated: all three DRL agents outperformed DJIA during a 2026 market downturn.
+  - Known issues documented: TensorboardCallback `rollout_buffer` KeyError (cosmetic), TD3/SAC CPU timeout.
+- **Artifacts:** [`BASELINE_ANALYSIS.md`](../research/BASELINE_ANALYSIS.md), `trained_models/agent_{a2c,ddpg,ppo}.zip`, `results/{a2c,ddpg,ppo}/`.
+- **Files affected (CA-MARL uses these, no further baseline work needed):** `finrl/meta/env_stock_trading/`, `finrl/agents/stablebaselines3/models.py`, `finrl/config.py`, `finrl/meta/data_processor.py`, `finrl/meta/preprocessor/`.
+- **Acceptance criteria:** baseline fully validated with documented results; next engineer begins CA-MARL implementation.
 
 ## Stage 1 — Data Foundation
 
@@ -51,4 +64,4 @@
 
 ---
 
-**Related documents:** [SYSTEM_WORKFLOW.md](./SYSTEM_WORKFLOW.md) · [TASKS.md](./TASKS.md) · [CURRENT_STATE.md](./CURRENT_STATE.md) · [TESTING_STRATEGY.md](./TESTING_STRATEGY.md) · [EXPERIMENT_PLAN.md](./EXPERIMENT_PLAN.md)
+**Related documents:** [BASELINE_ANALYSIS.md](../research/BASELINE_ANALYSIS.md) · [SYSTEM_WORKFLOW.md](../architecture/SYSTEM_WORKFLOW.md) · [TASKS.md](./TASKS.md) · [CURRENT_STATE.md](./CURRENT_STATE.md) · [TESTING_STRATEGY.md](../implementation/TESTING_STRATEGY.md) · [EXPERIMENT_PLAN.md](../research/EXPERIMENT_PLAN.md)

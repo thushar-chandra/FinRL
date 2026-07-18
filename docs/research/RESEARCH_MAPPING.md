@@ -39,4 +39,4 @@ Per the original Foundation document's research-writing philosophy ("never claim
 
 ---
 
-**Related documents:** [EXPERIMENT_PLAN.md](./EXPERIMENT_PLAN.md) · [DECISIONS.md](./DECISIONS.md) · [AGENTS.md](./AGENTS.md)
+**Related documents:** [EXPERIMENT_PLAN.md](./EXPERIMENT_PLAN.md) · [DECISIONS.md](../architecture/DECISIONS.md) · [AGENTS.md](../architecture/AGENTS.md)

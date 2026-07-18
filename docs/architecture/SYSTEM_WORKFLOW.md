@@ -1,6 +1,6 @@
 # SYSTEM_WORKFLOW.md
 
-> Narrative operational workflow — how the system runs at both build-time (implementation order) and run-time (inference sequence), in plain prose. Ties together [ARCHITECTURE.md](./ARCHITECTURE.md)'s diagrams and [IMPLEMENTATION_ROADMAP.md](./IMPLEMENTATION_ROADMAP.md)'s stages into one connected story. This document contains no timeline/day estimates and no team-assignment information (see `DECISIONS.md` ADR-017, ADR-018) — implementation order only.
+> Narrative operational workflow — how the system runs at both build-time (implementation order) and run-time (inference sequence), in plain prose. Ties together [ARCHITECTURE.md](./ARCHITECTURE.md)'s diagrams and [IMPLEMENTATION_ROADMAP.md](../planning/IMPLEMENTATION_ROADMAP.md)'s stages into one connected story. This document contains no timeline/day estimates and no team-assignment information (see `DECISIONS.md` ADR-017, ADR-018) — implementation order only.
 
 ## Run-Time Workflow (What Happens When the System Produces a Recommendation)
 
@@ -10,7 +10,7 @@
 4. Each agent's recommendation, together with signals available from its training process (historical accuracy — via the shared `OutcomeLabelGenerator`, reward stability, prediction consistency), flows into **Confidence Estimation & Calibration** — one combined module (ADR-022) — which computes a raw confidence value per agent, then calibrates it onto a validated, comparable scale and produces calibration diagnostics (ECE, Brier score, reliability diagrams).
 5. The three recommendations and their calibrated confidence values flow into **Confidence-Aware Decision Fusion** — a deterministic module (explicitly not PPO, not RL-trained) that first transforms each agent's heterogeneous recommendation into a common `AssetWeightProposal` vector, then computes `Final Allocation = Σ(Proposal × Confidence) / Σ(Confidence)` per asset, and composes the output's `reasoning` and `confidence_summary` fields (ADR-019, ADR-020 — full algorithm in `CONFIDENCE_FUSION.md`).
 6. The fused decision passes through the **Risk Management Layer**, which authoritatively enforces long-only, sum-to-one, and exposure-cap constraints regardless of what came before it, and passes `reasoning`/`confidence_summary` through unchanged.
-7. The result is the **Final Portfolio Recommendation** — an allocation, reasoning, and a confidence summary, every field traceable to a documented source (ADR-019) — which is what the system actually outputs. Nothing here executes a trade; this is a recommendation object (`PROJECT_CONTEXT.md` non-goals).
+7. The result is the **Final Portfolio Recommendation** — an allocation, reasoning, and a confidence summary, every field traceable to a documented source (ADR-019) — which is what the system actually outputs. Nothing here executes a trade; this is a recommendation object — it does not execute trades (see non-goals in `ARCHITECTURE.md` and `DECISIONS.md` ADR-015).
 8. Separately, **Evaluation** (ADR-021) — a fully specified module, `EvaluationEngine` — measures financial performance (Sharpe, Sortino, Max Drawdown, Volatility, Cumulative Return) and calibration quality (ECE, Brier, reliability diagrams, using the same `OutcomeLabelGenerator` as training) against baselines and ablations.
 
 ## Build-Time Workflow (Implementation Order — No Timeline Attached)
@@ -34,9 +34,9 @@ Each stage depends on the prior one being functionally complete (schema-valid ou
 - **Structure** (what each module is, how they connect): `ARCHITECTURE.md`.
 - **Research rationale** (why each module is designed this way): `MODULE_SPECIFICATIONS.md`.
 - **Engineering contract** (classes, schemas, failure cases): `AGENTS.md`, `INTERFACE_CONTRACTS.md`.
-- **FinRL reuse specifics**: `FINRL_MAPPING.md`, `MIGRATION_PLAN.md`.
+- **FinRL reuse specifics**: `FINRL_MAPPING.md`.
 - **Implementation staging with acceptance criteria**: `IMPLEMENTATION_ROADMAP.md`, `TASKS.md`.
 
 ---
 
-**Related documents:** [ARCHITECTURE.md](./ARCHITECTURE.md) · [IMPLEMENTATION_ROADMAP.md](./IMPLEMENTATION_ROADMAP.md) · [TASKS.md](./TASKS.md) · [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md)
+**Related documents:** [ARCHITECTURE.md](./ARCHITECTURE.md) · [IMPLEMENTATION_ROADMAP.md](../planning/IMPLEMENTATION_ROADMAP.md) · [TASKS.md](../planning/TASKS.md) · [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md)

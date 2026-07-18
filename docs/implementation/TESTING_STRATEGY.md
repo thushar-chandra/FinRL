@@ -46,9 +46,9 @@ Assert that `ConfidenceEngine.fit_calibration()`, called for a given walk-forwar
 ## 8. Reproducibility
 
 - All randomness (RL training for the three agents, calibration fitting if it has stochastic elements) must accept an explicit seed parameter — no reliance on global random state. `confidence_fusion.py` is deterministic and needs no seed.
-- Every experiment run must snapshot its exact config (`configs/*.yaml` at time of run) alongside its results — see `CONFIGURATION.md` §Configuration Philosophy and `EXPERIMENT_PLAN.md`.
+- Every experiment run must snapshot its exact config (`configs/*.yaml` at time of run) alongside its results — see the `configs/` section in `DIRECTORY_STRUCTURE.md` and `EXPERIMENT_PLAN.md`.
 - Multiple seeds per configuration are required before reporting any headline result (see `EXPERIMENT_PLAN.md` and `DECISIONS.md` Assumption Audit — "each RL agent can learn a stable policy from the available data" is flagged Needs Validation, and seed variance reporting is the direct mitigation for the reporting side of that risk).
 
 ---
 
-**Related documents:** [CODING_STANDARDS.md](./CODING_STANDARDS.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [EXPERIMENT_PLAN.md](./EXPERIMENT_PLAN.md) · [IMPLEMENTATION_ROADMAP.md](./IMPLEMENTATION_ROADMAP.md)
+**Related documents:** [CODING_STANDARDS.md](./CODING_STANDARDS.md) · [ARCHITECTURE.md](../architecture/ARCHITECTURE.md) · [EXPERIMENT_PLAN.md](../research/EXPERIMENT_PLAN.md) · [IMPLEMENTATION_ROADMAP.md](../planning/IMPLEMENTATION_ROADMAP.md)

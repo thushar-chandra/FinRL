@@ -1,16 +1,16 @@
 # FINRL_MAPPING.md
 
-> Functional mapping: which FinRL component implements which CA-MARL responsibility. Distinct from [MIGRATION_PLAN.md](./MIGRATION_PLAN.md), which is a folder-by-folder KEEP/MODIFY/REMOVE surgical decision table — this document instead answers "what does FinRL give us, functionally, for each responsibility in our architecture?" Cross-referenced, not duplicated.
+> Functional mapping: which FinRL component implements which CA-MARL responsibility. This document answers "what does FinRL give us, functionally, for each responsibility in our architecture?" Cross-referenced, not duplicated.
 
 ## Why FinRL
 
-FinRL is the implementation foundation (per the finalized architecture). We reuse its data pipeline, environment abstractions, Stable-Baselines3 PPO integration, training utilities, and evaluation pipeline. We do not rewrite FinRL — we extend it. See `MIGRATION_PLAN.md` for the exact folder-level decisions this implies.
+FinRL is the implementation foundation (per the finalized architecture). We reuse its data pipeline, environment abstractions, Stable-Baselines3 PPO integration, training utilities, and evaluation pipeline. We do not rewrite FinRL — we extend it. The functional mapping table below captures each component's disposition (Stage assignment and implementation notes).
 
 ## Functional Mapping
 
 | CA-MARL Responsibility | FinRL Component Providing It | Execution Order (Stage) | Depends On | Downstream Consumers | Notes |
 |---|---|---|---|---|---|
-| Data Pipeline (download, validate, version) | `finrl/meta/data_processors/` | Stage 1 | — (first stage) | Feature Engineering | Existing yfinance-based downloader and multi-source abstraction; extended with validation/versioning per `MIGRATION_PLAN.md`. |
+| Data Pipeline (download, validate, version) | `finrl/meta/data_processors/` | Stage 1 | — (first stage) | Feature Engineering | Existing yfinance-based downloader and multi-source abstraction; extended with validation/versioning. |
 | Feature Engineering (technical indicators + regime features) | `finrl/meta/preprocessor/` | Stage 1 | Data Pipeline | Market/Risk/Allocation Agents (Stage 2) | Existing MACD/RSI/Bollinger/SMA computation extended with returns, volatility, EWMA volatility, and regime features (ADR-016). |
 | Reinforcement learning training infrastructure for the three specialized agents | `finrl/agents/stablebaseline3/` (Stable-Baselines3 PPO integration) | Stage 2 | Feature Engineering | Confidence Estimation & Calibration, Confidence-Aware Decision Fusion | Whether the three agents share this training infrastructure or each gets its own instantiation is an implementation decision (ADR-013). |
 | Portfolio environment (long-only, sum-to-one action space) | `finrl/meta/env_portfolio_allocation/` (`PortfolioOptimizationEnv`) | Stage 2 | Feature Engineering | Portfolio Allocation Agent training loop | Provides the multi-asset, weight-vector action space; extended to carry regime features. Note: per ADR-025, this env's observation space does NOT include Market/Risk agent outputs. |
@@ -26,13 +26,10 @@ FinRL is the implementation foundation (per the finalized architecture). We reus
 
 These gaps are filled entirely by new code in `finrl/agents/ca_marl/`, as detailed in `AGENTS.md`, `MODULE_SPECIFICATIONS.md`, and `INTERFACE_CONTRACTS.md`.
 
-## Relationship to MIGRATION_PLAN.md
+## Scope of This Document
 
-- `FINRL_MAPPING.md` (this document): "what does FinRL give us, functionally, per responsibility?"
-- `MIGRATION_PLAN.md`: "for each specific FinRL folder/file, do we keep, modify, remove, ignore, or replace it, and why?"
-
-Read both; they answer different questions about the same underlying decision (fork FinRL, extend rather than rewrite).
+`FINRL_MAPPING.md` answers a functional question: "which FinRL component provides which CA-MARL responsibility, at which stage, and with what notes?" It does not enumerate every individual FinRL file — the functional mapping table above covers the components with Stage assignments and implementation guidance. Folder-by-folder decisions are subsumed into the table's Stage column (which implies KEEP/MODIFY for components assigned to a stage) and the dedicated new-code row for modules with no FinRL analogue.
 
 ---
 
-**Related documents:** [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) · [DIRECTORY_STRUCTURE.md](./DIRECTORY_STRUCTURE.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md)
+**Related documents:** [DIRECTORY_STRUCTURE.md](../implementation/DIRECTORY_STRUCTURE.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md)

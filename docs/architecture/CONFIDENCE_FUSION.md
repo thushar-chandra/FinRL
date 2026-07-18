@@ -143,4 +143,4 @@ A learned fusion mechanism (e.g., a small model or RL policy that learns fusion 
 
 ---
 
-**Related documents:** [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [AGENTS.md](./AGENTS.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [DECISIONS.md](./DECISIONS.md) · [EXPERIMENT_PLAN.md](./EXPERIMENT_PLAN.md) · [TESTING_STRATEGY.md](./TESTING_STRATEGY.md)
+**Related documents:** [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [AGENTS.md](./AGENTS.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [DECISIONS.md](./DECISIONS.md) · [EXPERIMENT_PLAN.md](../research/EXPERIMENT_PLAN.md) · [TESTING_STRATEGY.md](../implementation/TESTING_STRATEGY.md)

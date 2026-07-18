@@ -1,6 +1,6 @@
 # DECISIONS.md — Architecture Decision Record (ADR)
 
-> Every important decision, in order made. Do not silently reverse any of these without adding a new ADR explaining why — see [OPENCODE.md](./OPENCODE.md) §"How to avoid architectural drift."
+> Every important decision, in order made. Do not silently reverse any of these without adding a new ADR explaining why — see [OPENCODE.md](../implementation/OPENCODE.md) §"How to avoid architectural drift."
 
 ---
 
@@ -222,4 +222,4 @@
 
 ---
 
-**Related documents:** [ARCHITECTURE.md](./ARCHITECTURE.md) · [AGENTS.md](./AGENTS.md) · [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) · [RESEARCH_MAPPING.md](./RESEARCH_MAPPING.md)
+**Related documents:** [ARCHITECTURE.md](./ARCHITECTURE.md) · [AGENTS.md](./AGENTS.md) · [FINRL_MAPPING.md](./FINRL_MAPPING.md) · [RESEARCH_MAPPING.md](../research/RESEARCH_MAPPING.md)

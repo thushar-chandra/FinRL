@@ -1,6 +1,6 @@
 # ARCHITECTURE.md
 
-> Full software architecture — **frozen** per the finalized architectural decisions. Read after [PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md). Research-facing detail (purpose, theory, math) lives in [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md); engineering-facing detail (classes, contracts, failure cases) lives in [AGENTS.md](./AGENTS.md) and [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md); why these choices were made lives in [DECISIONS.md](./DECISIONS.md).
+> Full software architecture — **frozen** per the finalized architectural decisions. Research-facing detail (purpose, theory, math) lives in [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md); engineering-facing detail (classes, contracts, failure cases) lives in [AGENTS.md](./AGENTS.md) and [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md); why these choices were made lives in [DECISIONS.md](./DECISIONS.md).
 
 ---
 
@@ -137,4 +137,4 @@ flowchart TD
 
 ---
 
-**Related documents:** [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [AGENTS.md](./AGENTS.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md) · [CONFIDENCE_FUSION.md](./CONFIDENCE_FUSION.md) · [DECISIONS.md](./DECISIONS.md) · [DIRECTORY_STRUCTURE.md](./DIRECTORY_STRUCTURE.md)
+**Related documents:** [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [AGENTS.md](./AGENTS.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md) · [CONFIDENCE_FUSION.md](./CONFIDENCE_FUSION.md) · [DECISIONS.md](./DECISIONS.md) · [DIRECTORY_STRUCTURE.md](../implementation/DIRECTORY_STRUCTURE.md)

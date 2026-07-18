@@ -55,7 +55,7 @@ Data Pipeline → Feature Engineering (including regime features — no standalo
 ## How to Implement New Modules
 
 - New module → new file in `finrl/agents/ca_marl/`, one responsibility, documented in both `MODULE_SPECIFICATIONS.md` (why) and `AGENTS.md`/`INTERFACE_CONTRACTS.md` (how) if not already there.
-- Config-driven: no hardcoded values (`CONFIGURATION.md`).
+- Config-driven: no hardcoded values — all constants in `configs/*.yaml` loaded via typed config loader.
 - Type-hinted, logged, documented per `CODING_STANDARDS.md`.
 
 ## Testing Requirements
@@ -87,4 +87,4 @@ Data Pipeline → Feature Engineering (including regime features — no standalo
 
 ---
 
-**Related documents:** [DECISIONS.md](./DECISIONS.md) · [MODULE_SPECIFICATIONS.md](./MODULE_SPECIFICATIONS.md) · [AGENTS.md](./AGENTS.md) · [INTERFACE_CONTRACTS.md](./INTERFACE_CONTRACTS.md) · [CODING_STANDARDS.md](./CODING_STANDARDS.md) · [TESTING_STRATEGY.md](./TESTING_STRATEGY.md) · [HANDOFF.md](./HANDOFF.md)
+**Related documents:** [DECISIONS.md](../architecture/DECISIONS.md) · [MODULE_SPECIFICATIONS.md](../architecture/MODULE_SPECIFICATIONS.md) · [AGENTS.md](../architecture/AGENTS.md) · [INTERFACE_CONTRACTS.md](../architecture/INTERFACE_CONTRACTS.md) · [CODING_STANDARDS.md](./CODING_STANDARDS.md) · [TESTING_STRATEGY.md](./TESTING_STRATEGY.md) · [HANDOFF.md](../planning/HANDOFF.md)

@@ -114,7 +114,7 @@
 
 **Theory:** even if every upstream module behaves correctly, the fused decision must be authoritatively constrained at this layer — this is what guarantees the "recommendation, not execution" framing always produces a valid, investable portfolio object regardless of any upstream anomaly.
 
-**Mathematical formulation:** projection of the fused weight vector onto the long-only simplex (clipping/renormalization), plus any additional exposure-cap constraints (`CONFIGURATION.md`). `reasoning` and `confidence_summary` are passed through unchanged (ADR-019) — this layer's mathematical work is confined to the allocation vector itself.
+**Mathematical formulation:** projection of the fused weight vector onto the long-only simplex (clipping/renormalization), plus any additional exposure-cap constraints (see `configs/*.yaml`). `reasoning` and `confidence_summary` are passed through unchanged (ADR-019) — this layer's mathematical work is confined to the allocation vector itself.
 
 **Inputs:** `FusedDecision` from Confidence-Aware Decision Fusion.
 

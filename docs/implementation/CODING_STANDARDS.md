@@ -14,7 +14,7 @@
 - Constants: `UPPER_SNAKE_CASE`, defined in `config_schema.py` or the relevant `configs/*.yaml`, never inline magic numbers.
 
 ## Folder Organization
-- Mirrors `DIRECTORY_STRUCTURE.md` exactly. New modules go in `finrl/agents/ca_marl/`. Do not scatter CA-MARL logic into FinRL's original folders unless explicitly modifying an existing FinRL file per `MIGRATION_PLAN.md`.
+- Mirrors `DIRECTORY_STRUCTURE.md` exactly. New modules go in `finrl/agents/ca_marl/`. Do not scatter CA-MARL logic into FinRL's original folders unless explicitly modifying an existing FinRL file per `FINRL_MAPPING.md`.
 
 ## Imports
 - Absolute imports within the package (`from finrl.agents.ca_marl.contracts import AgentOutput`), not relative imports across module boundaries.

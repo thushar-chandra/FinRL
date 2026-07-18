@@ -1,6 +1,6 @@
 # EXPERIMENT_PLAN.md
 
-> See [RESEARCH_MAPPING.md](./RESEARCH_MAPPING.md) for which paper claims each experiment supports, and [TESTING_STRATEGY.md](./TESTING_STRATEGY.md) for the engineering-correctness tests that must pass before any of these experiments are trustworthy.
+> See [RESEARCH_MAPPING.md](./RESEARCH_MAPPING.md) for which paper claims each experiment supports, and [TESTING_STRATEGY.md](../implementation/TESTING_STRATEGY.md) for the engineering-correctness tests that must pass before any of these experiments are trustworthy. The upstream FinRL baseline has been validated — see [BASELINE_ANALYSIS.md](./BASELINE_ANALYSIS.md).
 
 ## Datasets
 
@@ -59,4 +59,4 @@ This experiment plan is designed so that every headline claim in the paper has a
 
 ---
 
-**Related documents:** [RESEARCH_MAPPING.md](./RESEARCH_MAPPING.md) · [TESTING_STRATEGY.md](./TESTING_STRATEGY.md) · [CONFIGURATION.md](./CONFIGURATION.md)
+**Related documents:** [RESEARCH_MAPPING.md](./RESEARCH_MAPPING.md) · [TESTING_STRATEGY.md](../implementation/TESTING_STRATEGY.md) · [BASELINE_ANALYSIS.md](./BASELINE_ANALYSIS.md)
