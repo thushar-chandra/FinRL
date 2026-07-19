@@ -1,0 +1,42 @@
+{
+  "dataset_version": "v1.0.0",
+  "download_timestamp": "2026-07-19T19:05:20.108724",
+  "data_source": "Yahoo Finance (yfinance)",
+  "ticker_universe": [
+    "RELIANCE.NS",
+    "TCS.NS",
+    "HDFCBANK.NS",
+    "INFY.NS",
+    "ICICIBANK.NS",
+    "HINDUNILVR.NS",
+    "ITC.NS",
+    "SBIN.NS",
+    "BHARTIARTL.NS",
+    "KOTAKBANK.NS",
+    "LT.NS",
+    "WIPRO.NS",
+    "AXISBANK.NS",
+    "TITAN.NS",
+    "ASIANPAINT.NS",
+    "MARUTI.NS",
+    "SUNPHARMA.NS",
+    "NTPC.NS",
+    "POWERGRID.NS"
+  ],
+  "date_range": {
+    "start": "2020-01-01",
+    "end": "2024-06-30"
+  },
+  "files": {
+    "features": "features_v1.0.0.pkl",
+    "forward_returns": "forward_returns_v1.0.0.pkl",
+    "realized_prices": "realized_prices_v1.0.0.pkl",
+    "universe": "universe.json"
+  },
+  "checksums": {
+    "features": "020fadb5567cbb53744ebb38564a29dacbf642e3cfa9405b749e6932c7b1519f",
+    "forward_returns": "80cfe297468d7fd7b1ff37b6837bb2a034387638cb5a9a75bf650f436bc26ff9",
+    "realized_prices": "ad3d96dab849283a4d2dcf2af29655cd455abc8d2c44f7f68b13b2a24c8d6d64",
+    "universe": "d6eb6e99fe15b8f7480f33cd73e221bbef3481449cb74b15b8145738f165d05e"
+  }
+}

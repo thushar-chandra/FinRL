@@ -1,0 +1,108 @@
+{
+  "experiment": "smoke_test",
+  "seed": 42,
+  "seed_label": "seed_0042",
+  "universe": [
+    "HDFCBANK.NS",
+    "RELIANCE.NS",
+    "TCS.NS"
+  ],
+  "n_timesteps": 1111,
+  "n_assets": 3,
+  "config": {
+    "ppo": {
+      "learning_rate": 0.0003,
+      "n_steps": 128,
+      "batch_size": 32,
+      "gamma": 0.99,
+      "total_timesteps": 500
+    },
+    "confidence": {
+      "calibration_method": "platt",
+      "historical_accuracy_weight": 0.4,
+      "reward_stability_weight": 0.3,
+      "prediction_consistency_weight": 0.3
+    }
+  },
+  "folds": [
+    {
+      "fold_id": "single",
+      "allocation": {
+        "HDFCBANK.NS": 0.2927086209800292,
+        "RELIANCE.NS": 0.30729137901997083,
+        "TCS.NS": 0.4
+      },
+      "fused_decision": {
+        "final_allocation": {
+          "HDFCBANK.NS": 0.27787738983218363,
+          "RELIANCE.NS": 0.29246014787212526,
+          "TCS.NS": 0.42966246229569116
+        },
+        "fallback_used": false
+      },
+      "financial_metrics": {
+        "sharpe_ratio": 1.3109662173309085,
+        "sortino_ratio": 1.9200178665121403,
+        "max_drawdown": -0.09168296746004412,
+        "volatility": 0.13995347806235367,
+        "cumulative_return": 0.16530543309346446
+      },
+      "calibration_metrics": {}
+    }
+  ],
+  "baselines": {
+    "equal_weight": {
+      "sharpe_ratio": 1.254420374565891,
+      "sortino_ratio": 1.739605916702358,
+      "max_drawdown": -0.09430765025177763,
+      "volatility": 0.14210933496192202,
+      "cumulative_return": 0.1596528682477094
+    },
+    "buy_and_hold": {
+      "sharpe_ratio": 1.1945222813775216,
+      "sortino_ratio": 1.6755316795681319,
+      "max_drawdown": -0.09411077295804779,
+      "volatility": 0.14232014400660564,
+      "cumulative_return": 0.1512218995259209
+    },
+    "static_mvo": {
+      "sharpe_ratio": 1.3959599927627786,
+      "sortino_ratio": 2.1255310312794933,
+      "max_drawdown": -0.1046265428603182,
+      "volatility": 0.16926607321284662,
+      "cumulative_return": 0.2159581218718034
+    }
+  },
+  "aggregated": {
+    "sharpe_ratio": {
+      "mean": 1.3109662173309085,
+      "std": 0.0,
+      "min": 1.3109662173309085,
+      "max": 1.3109662173309085
+    },
+    "sortino_ratio": {
+      "mean": 1.9200178665121403,
+      "std": 0.0,
+      "min": 1.9200178665121403,
+      "max": 1.9200178665121403
+    },
+    "max_drawdown": {
+      "mean": -0.09168296746004412,
+      "std": 0.0,
+      "min": -0.09168296746004412,
+      "max": -0.09168296746004412
+    },
+    "volatility": {
+      "mean": 0.13995347806235367,
+      "std": 0.0,
+      "min": 0.13995347806235367,
+      "max": 0.13995347806235367
+    },
+    "cumulative_return": {
+      "mean": 0.16530543309346446,
+      "std": 0.0,
+      "min": 0.16530543309346446,
+      "max": 0.16530543309346446
+    }
+  }
+}

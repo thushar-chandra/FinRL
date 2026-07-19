@@ -1,0 +1,23 @@
+{
+  "equal_weight": {
+    "sharpe_ratio": 1.166593186719736,
+    "sortino_ratio": 1.3178074636686394,
+    "max_drawdown": -0.3414904208549035,
+    "volatility": 0.17827230438281694,
+    "cumulative_return": 1.5604501995299858
+  },
+  "buy_and_hold": {
+    "sharpe_ratio": 1.1284532743385978,
+    "sortino_ratio": 1.2718485560679051,
+    "max_drawdown": -0.3352574188319308,
+    "volatility": 0.17563498576089026,
+    "cumulative_return": 1.446416382579029
+  },
+  "static_mvo": {
+    "sharpe_ratio": 1.5050904787510495,
+    "sortino_ratio": 2.2638372089089773,
+    "max_drawdown": -0.2600307449040841,
+    "volatility": 0.22261048084902146,
+    "cumulative_return": 3.5725784020689346
+  }
+}

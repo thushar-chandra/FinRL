@@ -1,0 +1,156 @@
+{
+  "experiment": "benchmark",
+  "seed": 42,
+  "seed_label": "seed_0042",
+  "universe": [
+    "ASIANPAINT.NS",
+    "AXISBANK.NS",
+    "BHARTIARTL.NS",
+    "HDFCBANK.NS",
+    "HINDUNILVR.NS",
+    "ICICIBANK.NS",
+    "INFY.NS",
+    "ITC.NS",
+    "KOTAKBANK.NS",
+    "LT.NS",
+    "MARUTI.NS",
+    "NTPC.NS",
+    "POWERGRID.NS",
+    "RELIANCE.NS",
+    "SBIN.NS",
+    "SUNPHARMA.NS",
+    "TCS.NS",
+    "TITAN.NS",
+    "WIPRO.NS"
+  ],
+  "n_timesteps": 1111,
+  "n_assets": 19,
+  "config": {
+    "ppo": {
+      "learning_rate": 0.0003,
+      "n_steps": 128,
+      "batch_size": 32,
+      "gamma": 0.99,
+      "total_timesteps": 1000
+    },
+    "confidence": {
+      "calibration_method": "platt",
+      "historical_accuracy_weight": 0.4,
+      "reward_stability_weight": 0.3,
+      "prediction_consistency_weight": 0.3
+    }
+  },
+  "folds": [
+    {
+      "fold_id": "single",
+      "allocation": {
+        "ASIANPAINT.NS": 0.03468183226544987,
+        "AXISBANK.NS": 0.04284603971384225,
+        "BHARTIARTL.NS": 0.05519723331046475,
+        "HDFCBANK.NS": 0.05544960081643466,
+        "HINDUNILVR.NS": 0.13896769754002955,
+        "ICICIBANK.NS": 0.02972802633659734,
+        "INFY.NS": 0.03468183226544987,
+        "ITC.NS": 0.023872761847837595,
+        "KOTAKBANK.NS": 0.040504501017888814,
+        "LT.NS": 0.06975091254264539,
+        "MARUTI.NS": 0.09012884855944579,
+        "NTPC.NS": 0.005667642945475685,
+        "POWERGRID.NS": 0.0783943902377602,
+        "RELIANCE.NS": 0.02252947438050581,
+        "SBIN.NS": 0.09012884855944579,
+        "SUNPHARMA.NS": 0.0554472263149724,
+        "TCS.NS": 3.341233756897213e-07,
+        "TITAN.NS": 0.03468183226544987,
+        "WIPRO.NS": 0.09734096495692875
+      },
+      "fused_decision": {
+        "final_allocation": {
+          "ASIANPAINT.NS": 0.034681832265449866,
+          "AXISBANK.NS": 0.042846039713842245,
+          "BHARTIARTL.NS": 0.05519723331046474,
+          "HDFCBANK.NS": 0.05544960081643465,
+          "HINDUNILVR.NS": 0.13896769754002952,
+          "ICICIBANK.NS": 0.029728026336597338,
+          "INFY.NS": 0.034681832265449866,
+          "ITC.NS": 0.02387276184783759,
+          "KOTAKBANK.NS": 0.04050450101788881,
+          "LT.NS": 0.06975091254264537,
+          "MARUTI.NS": 0.09012884855944578,
+          "NTPC.NS": 0.005667642945475684,
+          "POWERGRID.NS": 0.07839439023776018,
+          "RELIANCE.NS": 0.022529474380505808,
+          "SBIN.NS": 0.09012884855944578,
+          "SUNPHARMA.NS": 0.05544722631497239,
+          "TCS.NS": 3.3412337568972124e-07,
+          "TITAN.NS": 0.034681832265449866,
+          "WIPRO.NS": 0.09734096495692873
+        },
+        "fallback_used": false
+      },
+      "financial_metrics": {
+        "sharpe_ratio": 2.2095863133747407,
+        "sortino_ratio": 2.8278061490304696,
+        "max_drawdown": -0.051208144548109055,
+        "volatility": 0.1238460460769696,
+        "cumulative_return": 0.2639031205438702
+      },
+      "calibration_metrics": {}
+    }
+  ],
+  "baselines": {
+    "equal_weight": {
+      "sharpe_ratio": 2.184069159973599,
+      "sortino_ratio": 2.7409801182074243,
+      "max_drawdown": -0.05627150546203501,
+      "volatility": 0.12513328615819705,
+      "cumulative_return": 0.263321977371074
+    },
+    "buy_and_hold": {
+      "sharpe_ratio": 2.0971556592971377,
+      "sortino_ratio": 2.4464085799605004,
+      "max_drawdown": -0.06157626708894943,
+      "volatility": 0.13343036160532937,
+      "cumulative_return": 0.26936150582664475
+    },
+    "static_mvo": {
+      "sharpe_ratio": 1.7915263075147587,
+      "sortino_ratio": 2.5934860016566867,
+      "max_drawdown": -0.1289104496870585,
+      "volatility": 0.15095416732368708,
+      "cumulative_return": 0.25624902657094295
+    }
+  },
+  "aggregated": {
+    "sharpe_ratio": {
+      "mean": 2.2095863133747407,
+      "std": 0.0,
+      "min": 2.2095863133747407,
+      "max": 2.2095863133747407
+    },
+    "sortino_ratio": {
+      "mean": 2.8278061490304696,
+      "std": 0.0,
+      "min": 2.8278061490304696,
+      "max": 2.8278061490304696
+    },
+    "max_drawdown": {
+      "mean": -0.051208144548109055,
+      "std": 0.0,
+      "min": -0.051208144548109055,
+      "max": -0.051208144548109055
+    },
+    "volatility": {
+      "mean": 0.1238460460769696,
+      "std": 0.0,
+      "min": 0.1238460460769696,
+      "max": 0.1238460460769696
+    },
+    "cumulative_return": {
+      "mean": 0.2639031205438702,
+      "std": 0.0,
+      "min": 0.2639031205438702,
+      "max": 0.2639031205438702
+    }
+  }
+}
