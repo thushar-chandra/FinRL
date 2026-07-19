@@ -6,8 +6,9 @@ frozen architecture (docs/architecture/).  Submodules are added as each
 stage of the pipeline is implemented.
 
 Current state: shared contracts, configuration schemas, all three
-specialised RL agents (Market, Risk, Allocation), and Confidence
-Estimation & Calibration module.
+specialised RL agents (Market, Risk, Allocation), Confidence
+Estimation & Calibration, Confidence-Aware Decision Fusion,
+Risk Management Layer, and Evaluation Engine.
 """
 
 from finrl.agents.ca_marl.config_schema import (
@@ -42,6 +43,15 @@ from finrl.agents.ca_marl.confidence_engine import (
     ConfidenceEngine,
     OutcomeLabelGenerator,
 )
+from finrl.agents.ca_marl.confidence_fusion import ConfidenceAwareFusion
+from finrl.agents.ca_marl.risk_management import RiskManagementLayer
+from finrl.agents.ca_marl.evaluation import EvaluationEngine
+from finrl.agents.ca_marl.pipeline import (
+    build_agents,
+    run_inference,
+    run_pipeline,
+)
+from finrl.agents.ca_marl.data_adapter import download_and_prepare
 
 __all__ = [
     # --- Agents ---
@@ -51,6 +61,12 @@ __all__ = [
     # --- Confidence & Calibration ---
     "ConfidenceEngine",
     "OutcomeLabelGenerator",
+    # --- Fusion ---
+    "ConfidenceAwareFusion",
+    # --- Risk Management ---
+    "RiskManagementLayer",
+    # --- Evaluation ---
+    "EvaluationEngine",
     # --- Configuration models ---
     "AgentHyperparameters",
     "CAMARLConfig",
@@ -66,6 +82,12 @@ __all__ = [
     "CalibratedConfidence",
     "FusedDecision",
     "FinalRecommendation",
+    # --- Pipeline ---
+    "build_agents",
+    "run_inference",
+    "run_pipeline",
+    # --- Data adapter ---
+    "download_and_prepare",
     # --- Evaluation data structures ---
     "FinancialMetrics",
     "CalibrationMetrics",

@@ -14,7 +14,7 @@ docs/architecture/DECISIONS.md.
 
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date
 from typing import Literal
 
 

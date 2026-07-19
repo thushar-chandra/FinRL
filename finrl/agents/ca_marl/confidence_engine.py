@@ -10,7 +10,6 @@ docs/architecture/MODULE_SPECIFICATIONS.md §4.
 
 import logging
 from datetime import datetime, timedelta
-from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -347,8 +346,9 @@ class ConfidenceEngine:
                     name,
                 )
 
-            # --- reward stability ---
-            rs = ao.metadata.get("reward_stability", 0.0)
+            # --- reward stability (normalised to [0, 1]) ---
+            rs_raw = ao.metadata.get("reward_stability", 0.0)
+            rs = rs_raw / (1.0 + rs_raw) if rs_raw >= 0.0 else 0.0
 
             # --- prediction consistency ---
             pc = pcs.get(name, 0.0)
