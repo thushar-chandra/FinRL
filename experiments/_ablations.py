@@ -78,22 +78,29 @@ def run_no_calibration(
     risk_config: RiskManagementConfig,
     eval_engine: EvaluationEngine,
     realized_prices: Any,
+    raw_confidences: dict[str, float] | None = None,
 ) -> dict[str, Any]:
-    """Ablation 2: use raw_confidence from AgentOutput instead of calibrated.
+    """Ablation 2: use raw confidence values instead of calibrated.
 
     Isolates the value of the calibration step specifically.
+
+    Uses ``raw_confidences`` (computed by ``ConfidenceEngine``) when
+    provided; otherwise falls back to ``AgentOutput.raw_confidence``
+    (which is a placeholder value).
     """
-    raw_confidences = {
-        ao.agent_name: CalibratedConfidence(
-            agent_name=ao.agent_name,
-            calibrated_confidence=ao.raw_confidence,
+    if raw_confidences is None:
+        raw_confidences = {ao.agent_name: ao.raw_confidence for ao in agent_outputs}
+    raw_conf_objects = {
+        name: CalibratedConfidence(
+            agent_name=name,
+            calibrated_confidence=conf,
             diagnostics={},
-            timestamp=ao.timestamp,
+            timestamp=agent_outputs[0].timestamp,
         )
-        for ao in agent_outputs
+        for name, conf in raw_confidences.items()
     }
     return _run_fusion_and_eval(
-        agent_outputs, raw_confidences, universe,
+        agent_outputs, raw_conf_objects, universe,
         agent_configs, risk_config, eval_engine, realized_prices,
     )
 

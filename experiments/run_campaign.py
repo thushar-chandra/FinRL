@@ -239,6 +239,7 @@ def _run_ablations(campaign_id, args, features, forward_returns, realized_prices
 
     agent_outputs = result["agent_outputs"]
     calibrated = result["calibrated_confidences"]
+    raw_confidences = result["raw_confidences"]
     eval_engine = EvaluationEngine(outcome_label_gen)
 
     ablations = {
@@ -259,7 +260,8 @@ def _run_ablations(campaign_id, args, features, forward_returns, realized_prices
             DEFAULT_AGENT_CONFIGS, DEFAULT_RISK, eval_engine, test_prices)),
         ("no_calibration", lambda: run_no_calibration(
             agent_outputs, calibrated, universe,
-            DEFAULT_AGENT_CONFIGS, DEFAULT_RISK, eval_engine, test_prices)),
+            DEFAULT_AGENT_CONFIGS, DEFAULT_RISK, eval_engine, test_prices,
+            raw_confidences=raw_confidences)),
         ("shuffled_confidence", lambda: run_shuffled_confidence(
             agent_outputs, calibrated, universe,
             DEFAULT_AGENT_CONFIGS, DEFAULT_RISK, eval_engine, test_prices,

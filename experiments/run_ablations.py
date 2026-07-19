@@ -117,6 +117,7 @@ def main() -> None:
     ablations["no_calibration"] = run_no_calibration(
         agent_outputs, calibrated, universe,
         DEFAULT_AGENT_CONFIGS, DEFAULT_RISK, eval_engine, test_prices,
+        raw_confidences=result["raw_confidences"],
     )
 
     logger.info("Running ablation: shuffled_confidence")

@@ -168,5 +168,6 @@ def train_and_infer(
         "evaluation_report": eval_report,
         "agent_outputs": agent_outputs,
         "calibrated_confidences": calibrated,
+        "raw_confidences": raw_confs,
         "fused_decision": fused,
     }
