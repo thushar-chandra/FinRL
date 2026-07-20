@@ -92,6 +92,7 @@ class WalkForwardRunner:
         )
 
         outcome_label_gen = OutcomeLabelGenerator(self._agent_configs)
+        calib_engine = ConfidenceEngine(outcome_label_gen, self._confidence_config)
 
         # Accumulated calibration data from earlier folds (label-leakage-safe).
         accumulated_calib_data: list[tuple[str, float, float]] = []
@@ -147,6 +148,9 @@ class WalkForwardRunner:
                 prediction_consistency_k=self._prediction_consistency_k,
                 calib_pairs=list(accumulated_calib_data),
                 outcome_label_gen=outcome_label_gen,
+                val_features=val_feat,
+                val_realized_prices=val_prices,
+                calib_engine=calib_engine,
             )
 
             rec = result["final_recommendation"]
@@ -214,7 +218,7 @@ class WalkForwardRunner:
             except Exception as exc:
                 logger.warning("Baseline computation failed for fold %s: %s", fold_id, exc)
 
-            # --- Collect calibration pairs from this test window for future folds ---
+            # --- Collect calibration pairs from the validation window for future folds ---
             # ADR-024: only accumulate pairs whose label resolves within the
             # next fold's training window to prevent future information leakage.
             next_schedule = (
@@ -224,28 +228,35 @@ class WalkForwardRunner:
                 pd.Timestamp(self._realized_prices.index[next_schedule.train_end])
                 if next_schedule is not None else None
             )
-            conf_map = result["calibrated_confidences"]
-            for ao in result["agent_outputs"]:
-                try:
-                    label = outcome_label_gen.generate_label(
-                        ao.agent_name, ao, eval_prices,
-                    )
-                    if next_train_end is not None:
-                        cfg = self._agent_configs.get(
-                            ao.agent_name,
-                            self._agent_configs.get("market_agent",
-                                                     self._agent_configs.get("risk_agent")),
+            val_agent_outputs = result.get("val_agent_outputs")
+            if val_agent_outputs is not None:
+                val_eval_end = min(
+                    schedule.val_end + label_horizon + 5,
+                    len(self._realized_prices),
+                )
+                val_eval_prices = self._realized_prices.iloc[schedule.val_start:val_eval_end]
+                for ao in val_agent_outputs:
+                    try:
+                        label = outcome_label_gen.generate_label(
+                            ao.agent_name, ao, val_eval_prices,
                         )
-                        horizon = timedelta(days=cfg.label_horizon_days)
-                        if not outcome_label_gen.is_eligible_for_fold(
-                            ao, horizon, next_train_end.to_pydatetime(),
-                        ):
-                            continue
-                    accumulated_calib_data.append(
-                        (ao.agent_name, ao.raw_confidence, label)
-                    )
-                except Exception:
-                    pass  # normal for last few rows where horizon exceeds data
+                        if next_train_end is not None:
+                            cfg = self._agent_configs.get(
+                                ao.agent_name,
+                                self._agent_configs.get("market_agent",
+                                                         self._agent_configs.get("risk_agent")),
+                            )
+                            horizon = timedelta(days=cfg.label_horizon_days)
+                            if not outcome_label_gen.is_eligible_for_fold(
+                                ao, horizon, next_train_end.to_pydatetime(),
+                            ):
+                                continue
+                        accumulated_calib_data.append(
+                            (ao.agent_name, ao.raw_confidence, label)
+                        )
+                        calib_engine.record_outcome(ao.agent_name, label)
+                    except Exception:
+                        pass  # normal for last few rows where horizon exceeds data
             logger.info(
                 "Calibration pool now has %d pairs across all agents",
                 len(accumulated_calib_data),

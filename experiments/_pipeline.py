@@ -67,6 +67,9 @@ def train_and_infer(
     calib_pairs: list[tuple[str, float, float]] | None = None,
     outcome_label_gen: OutcomeLabelGenerator | None = None,
     eval_realized_prices: pd.DataFrame | None = None,
+    val_features: pd.DataFrame | None = None,
+    val_realized_prices: pd.DataFrame | None = None,
+    calib_engine: ConfidenceEngine | None = None,
 ) -> dict[str, Any]:
     """Train agents, run inference with timestamp patching, and evaluate.
 
@@ -108,6 +111,16 @@ def train_and_infer(
         total_timesteps=total_timesteps,
     )
 
+    # --- Predict on validation window (for calibration pair collection) ---
+    val_agent_outputs: list[AgentOutput] | None = None
+    if val_features is not None:
+        val_market_out = trained["market_agent"].predict(val_features)
+        val_risk_out = trained["risk_agent"].predict(val_features)
+        val_alloc_out = trained["allocation_agent"].predict(val_features)
+        val_agent_outputs = [val_market_out, val_risk_out, val_alloc_out]
+        if val_realized_prices is not None:
+            val_agent_outputs = _patch_timestamps(val_agent_outputs, val_realized_prices.index)
+
     # --- Predict ---
     market_agent = trained["market_agent"]
     risk_agent = trained["risk_agent"]
@@ -137,7 +150,8 @@ def train_and_infer(
     # --- Confidence estimation ---
     if outcome_label_gen is None:
         outcome_label_gen = OutcomeLabelGenerator(agent_configs)
-    calib_engine = ConfidenceEngine(outcome_label_gen, confidence_config)
+    if calib_engine is None:
+        calib_engine = ConfidenceEngine(outcome_label_gen, confidence_config)
     raw_confs = calib_engine.estimate_raw_confidence(agent_outputs, pcs)
 
     calib_engine.fit_calibration(calib_pairs or [])
@@ -167,7 +181,9 @@ def train_and_infer(
         "final_recommendation": final_rec,
         "evaluation_report": eval_report,
         "agent_outputs": agent_outputs,
+        "val_agent_outputs": val_agent_outputs,
         "calibrated_confidences": calibrated,
         "raw_confidences": raw_confs,
         "fused_decision": fused,
+        "calib_engine": calib_engine,
     }

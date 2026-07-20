@@ -1,0 +1,101 @@
+
+======================================================================
+DYNAMIC VERIFICATION REPORT
+======================================================================
+
+--- FINDING 1: record_outcome() never called ---
+  ConfidenceEngine instances created: 1
+  record_outcome() calls: 12
+  => PARTIALLY CONFIRMED (called 12x)
+
+--- LABEL HISTORY SIZES ---
+  eng#1:market_agent: 3 labels
+  eng#1:risk_agent: 3 labels
+  eng#1:allocation_agent: 3 labels
+  All empty: False
+
+--- FINDING 2: Calibration pairs store 0.0, not computed confidence ---
+  Agent predict() calls: 24
+  All AgentOutput.raw_confidence == 0.0: True
+    market_agent: raw_conf=0.0000 rs=26260.5697
+    risk_agent: raw_conf=0.0000 rs=364.3561
+    allocation_agent: raw_conf=0.0000 rs=82.4574
+    market_agent: raw_conf=0.0000 rs=26260.5697
+    risk_agent: raw_conf=0.0000 rs=364.3561
+    allocation_agent: raw_conf=0.0000 rs=82.4574
+  Fit_calibration pairs logged: 18
+  All pair raw_confidence == 0.0: True
+  Computed raw confidences (12 values):
+    range=[0.3234, 0.7296] mean=0.6107
+  => CONFIRMED MISMATCH: pairs store 0.0, computed values in [0.3234, 0.7296]
+
+--- FINDING 3: First fold always empty calibration ---
+  Engines with models: [1]
+  Engine #1 (first fold) all models None (identity): True
+  => CONFIRMED: first fold has identity mapping (no calibration)
+
+--- FINDING 4: New ConfidenceEngine each fold ---
+  Engines created: 1 (expected: >= folds)
+  => CONFIRMED: new engine each fold, discarding _label_history
+
+--- FINDING 5: _collect_calibration_pairs() never called ---
+  Calls to _collect_calibration_pairs(): 0
+  => CONFIRMED
+
+--- FINDING 6: N-fold expanding accumulation ---
+  Total calibration pairs across all folds (stored): 18
+  Calibrate calls: 12
+
+--- LABEL GENERATION SUMMARY ---
+  Total labels generated: 24
+  market_agent: 8 labels, mean=0.5197, std=0.1226
+  risk_agent: 8 labels, mean=0.9342, std=0.0510
+  allocation_agent: 8 labels, mean=0.5000, std=0.5000
+
+--- ELIGIBILITY DECISIONS ---
+  Eligibility checks: 9
+  Eligible: 9 | Not eligible: 0
+    market_agent @ 2022-04-11 00:00:00: YES (2022-04-11 00:00:00 + 5d <= 2022-07-13 00:00:00)
+    risk_agent @ 2022-04-11 00:00:00: YES (2022-04-11 00:00:00 + 5d <= 2022-07-13 00:00:00)
+    allocation_agent @ 2022-04-11 00:00:00: YES (2022-04-11 00:00:00 + 5d <= 2022-07-13 00:00:00)
+    market_agent @ 2022-10-13 00:00:00: YES (2022-10-13 00:00:00 + 5d <= 2023-01-13 00:00:00)
+    risk_agent @ 2022-10-13 00:00:00: YES (2022-10-13 00:00:00 + 5d <= 2023-01-13 00:00:00)
+    allocation_agent @ 2022-10-13 00:00:00: YES (2022-10-13 00:00:00 + 5d <= 2023-01-13 00:00:00)
+    market_agent @ 2023-04-19 00:00:00: YES (2023-04-19 00:00:00 + 5d <= 2023-07-20 00:00:00)
+    risk_agent @ 2023-04-19 00:00:00: YES (2023-04-19 00:00:00 + 5d <= 2023-07-20 00:00:00)
+    allocation_agent @ 2023-04-19 00:00:00: YES (2023-04-19 00:00:00 + 5d <= 2023-07-20 00:00:00)
+
+--- CALIBRATION MODELS PER ENGINE ---
+  Engine #1, market_agent: identity (None) (None=True)
+  Engine #1, risk_agent: identity (None) (None=True)
+  Engine #1, allocation_agent: identity (None) (None=True)
+  Engine #1, market_agent: identity (None) (None=True)
+  Engine #1, risk_agent: identity (None) (None=True)
+  Engine #1, allocation_agent: identity (None) (None=True)
+  Engine #1, market_agent: identity (None) (None=True)
+  Engine #1, risk_agent: identity (None) (None=True)
+  Engine #1, allocation_agent: identity (None) (None=True)
+
+--- CALIBRATION OUTPUT ---
+  Engine #1, market_agent: raw=0.6579 -> cal=0.6579
+  Engine #1, risk_agent: raw=0.5702 -> cal=0.5702
+  Engine #1, allocation_agent: raw=0.5434 -> cal=0.5434
+  Engine #1, market_agent: raw=0.6516 -> cal=0.6516
+  Engine #1, risk_agent: raw=0.6897 -> cal=0.6897
+  Engine #1, allocation_agent: raw=0.3234 -> cal=0.3234
+  Engine #1, market_agent: raw=0.6568 -> cal=0.6568
+  Engine #1, risk_agent: raw=0.7042 -> cal=0.7042
+  Engine #1, allocation_agent: raw=0.5200 -> cal=0.5200
+  Engine #1, market_agent: raw=0.6877 -> cal=0.6877
+  Engine #1, risk_agent: raw=0.7296 -> cal=0.7296
+  Engine #1, allocation_agent: raw=0.5935 -> cal=0.5935
+
+--- TOTAL CALIBRATION PAIRS PER FOLD (from logs) ---
+  Fold 1: passed 0 pairs to fit_calibration (calib_pairs=[])
+  Fold 2: passed 0 pairs to fit_calibration
+  Fold 3: passed 0 pairs to fit_calibration
+  Fold 4: passed 0 pairs to fit_calibration
+  Reason: eligibility check always fails — test window date > next fold's training end
+  Only the last fold accumulates 3 pairs (eligibility skipped), but they're never consumed
+
+--- ADR-024 LEAKAGE RULE ANALYSIS ---
