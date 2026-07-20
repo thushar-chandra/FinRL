@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Ablation Study Results}
+\label{tab:ablation}
+\begin{tabular}{lccccc}
+\toprule
+Ablation & Sharpe & Sortino & MaxDD & Vol & CumRet \\
+\midrule
+  CA-MARL & 1.9392 & 2.4823 & -0.0599 & 0.1218 & 0.2233 \\
+  Equal Weight Fusion & 1.9510 & 2.4597 & -0.0598 & 0.1233 & 0.2277 \\
+  No Calibration & 1.9392 & 2.4823 & -0.0599 & 0.1218 & 0.2233 \\
+  Shuffled Confidence & 1.9521 & 2.4872 & -0.0598 & 0.1223 & 0.2258 \\
+  Drop Market Agent & 2.0100 & 2.3402 & -0.0610 & 0.1328 & 0.2552 \\
+  Drop Risk Agent & 1.8809 & 2.3598 & -0.0605 & 0.1250 & 0.2215 \\
+  Drop Allocation Agent & 1.8423 & 2.6231 & -0.0601 & 0.1141 & 0.1964 \\
+\bottomrule
+\end{tabular}
+\end{table}

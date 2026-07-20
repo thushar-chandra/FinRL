@@ -1,0 +1,46 @@
+{
+  "reproducibility_lock": {
+    "git_commit": "ba81e82",
+    "git_branch": "feature/experimentation",
+    "python_version": "3.14.5",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_folds": 4,
+    "total_timesteps": 5000,
+    "dataset_version": "v1.0.0",
+    "dataset_timesteps": 1111,
+    "dataset_assets": 19,
+    "lock_date": "2026-07-20"
+  },
+  "experiment_parameters": {
+    "training_window_days": 504,
+    "validation_window_days": 63,
+    "test_window_days": 126,
+    "stride": 126,
+    "ppo_lr": 0.0003,
+    "ppo_n_steps": 128,
+    "ppo_batch_size": 32,
+    "ppo_gamma": 0.99,
+    "confidence_calibration": "platt",
+    "confidence_weights": {
+      "historical_accuracy": 0.4,
+      "reward_stability": 0.3,
+      "prediction_consistency": 0.3
+    },
+    "label_horizon_days": 5,
+    "reward_stability_window": 20,
+    "risk_max_exposure": 0.4
+  },
+  "artifact_counts": {
+    "seed_result_files": 5,
+    "ablation_variants": 7,
+    "publication_figures": 4,
+    "publication_tables": 4,
+    "existing_plots_tables": 8
+  }
+}

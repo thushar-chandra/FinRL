@@ -1,0 +1,55 @@
+{
+  "campaign": {
+    "id": "campaign_v1",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "folds": 4,
+    "dataset_version": "v1.0.0",
+    "n_timesteps": 1111,
+    "n_assets": 19,
+    "total_timesteps_per_agent": 5000
+  },
+  "artifacts": {
+    "figures": [
+      "plots\\publication\\figures\\fig01_cumulative_returns.pdf",
+      "plots\\publication\\figures\\fig02_reliability_diagrams.pdf",
+      "plots\\publication\\figures\\fig03_ablation_bars.pdf",
+      "plots\\publication\\figures\\fig04_regime_timeline.pdf"
+    ],
+    "tables": [
+      "plots\\publication\\tables\\table01_summary.tex",
+      "plots\\publication\\tables\\table02_per_fold.tex",
+      "plots\\publication\\tables\\table03_ablation.tex",
+      "plots\\publication\\tables\\table04_calibration.tex"
+    ],
+    "existing_plots": [
+      "plots\\ablation_cumulative_return_campaign_v1.png",
+      "plots\\ablation_sharpe_ratio_campaign_v1.png",
+      "plots\\cumulative_returns_campaign_v1.png",
+      "plots\\regime_timeline_campaign_v1.png",
+      "plots\\campaign_summary_campaign_v1_20260720_003628.csv",
+      "plots\\campaign_summary_campaign_v1_20260720_024808.csv",
+      "plots\\per_fold_metrics_campaign_v1.csv",
+      "plots\\results_table_campaign_v1.csv"
+    ],
+    "results": [
+      "results\\campaign_v1_seed_0042.json",
+      "results\\campaign_v1_seed_0043.json",
+      "results\\campaign_v1_seed_0044.json",
+      "results\\campaign_v1_seed_0045.json",
+      "results\\campaign_v1_seed_0046.json"
+    ],
+    "reports": [
+      "reports\\research_report.md"
+    ]
+  },
+  "verification": {
+    "n_passed": 47,
+    "n_failed": 0
+  }
+}
