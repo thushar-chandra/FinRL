@@ -10,7 +10,7 @@ Three specialised reinforcement learning agents---Market Analysis, Risk Assessme
 
 The Confidence-Aware Decision Fusion module transforms each agent's recommendation into a common weight-vector representation and combines them using a deterministic confidence-weighted formula. The Risk Management Layer enforces portfolio-level constraints---long-only, sum-to-one, per-asset exposure limits---on the fused allocation. Finally, the Evaluation engine computes financial performance metrics, calibration diagnostics, and baseline comparisons.
 
-A walk-forward runner orchestrates the full train-infer-evaluate cycle per chronological fold, managing data splits, calibration eligibility, and result accumulation. Figure 4 depicts the temporal structure of the walk-forward schedule.
+A walk-forward runner orchestrates the full train-infer-evaluate cycle per chronological fold, managing data splits, calibration eligibility, and result accumulation. Figure 1 depicts the temporal structure of the walk-forward schedule.
 
 ### 3.2 Reinforcement Learning Agents
 
@@ -38,7 +38,7 @@ where \(\hat{c}_i\) is the raw (uncalibrated) confidence for agent \(i\), \(a_i\
 
 *Historical accuracy* is the rolling empirical correctness rate of the agent's past recommendations, measured against validated outcome labels (described below). Agents with no resolved labels (cold-start) receive an uninformative prior of \(a_i = 0.5\).
 
-*Reward stability* is the inverse variance of the agent's recent realised rewards, normalised to \([0, 1]\). It captures whether the agent's training process has converged to a stable region of the policy space.
+*Reward stability* is the inverse variance of the agent's realised rewards over the most recent 20 trading days, normalised to \([0, 1]\). It captures whether the agent's training process has converged to a stable region of the policy space.
 
 *Prediction consistency* measures output stability under small input perturbations. For continuous outputs (risk scores, weights), consistency is \(p_i = 1 - \text{CV}\), where CV is the coefficient of variation across \(k = 5\) samples from nearby historical states. For categorical outputs (BUY/SELL/HOLD), it is the fraction of samples agreeing with the modal recommendation.
 

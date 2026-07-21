@@ -227,7 +227,7 @@ def generate_ablation_plots(campaign_id):
 
 
 def generate_regime_timeline(campaign_id, data):
-    """Generate regime timeline overlay plot."""
+    """Generate normalised price chart with fold boundaries."""
     realized_prices = data["realized_prices"]
     plot_regime_timeline(
         realized_prices,

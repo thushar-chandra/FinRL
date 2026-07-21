@@ -303,10 +303,10 @@ CA-MARL is a confidence-aware multi-agent reinforcement learning framework for p
 | Field | Detail |
 |-------|--------|
 | **Location** | §5.2 Walk-Forward Analysis (or §3 Architecture to illustrate dataset) |
-| **What it shows** | Nifty 50 price index over the evaluation period with volatility regime shading and fold boundary markers |
+| **What it shows** | Nifty 50 price index over the evaluation period with fold boundary markers |
 | **Point it supports** | Illustrates the temporal structure of the data and the walk-forward split; contextualizes the regime effect |
 | **Why important** | Provides visual context for the walk-forward design and the non-stationarity finding |
-| **Caption** | "Market regime timeline: Nifty 50 index price (top) with volatility regime shading (high/low volatility in shaded regions). Vertical dashed lines show walk-forward fold boundaries (training/validation/test windows per fold). The 2020–2024 period spans the COVID-19 recovery, a low-volatility bull market (2021–2022), and a moderate-volatility recovery." |
+| **Caption** | "Market timeline: Nifty 50 index price with walk-forward fold boundaries (training/validation/test windows per fold). The 2020–2024 period spans the COVID-19 recovery, a low-volatility bull market (2021–2022), and a moderate-volatility recovery." |
 
 ---
 

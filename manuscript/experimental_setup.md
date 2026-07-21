@@ -12,7 +12,7 @@ We use 4-fold chronological walk-forward validation with non-overlapping test wi
 
 ### 4.3 Training Configuration
 
-Each agent is trained using Proximal Policy Optimization (Schulman et al., 2017) via Stable-Baselines3 with a learning rate of $3 \times 10^{-4}$, $n$-steps of 128, and a minibatch size of 32. The discount factor is $\gamma = 0.99$, GAE parameter $\lambda = 0.95$, and the clipping range is 0.2. Each agent receives 5,000 timesteps of training per fold. Confidence estimation uses the following weights: historical accuracy 0.4, reward stability 0.3, prediction consistency 0.3. Calibration uses Platt scaling with a minimum of five pairs per agent before a non-identity mapping is fitted. The prediction consistency parameter is $k = 5$ samples. The label horizon is 5 trading days for all agents. Random seeds 42 through 46 are used to characterise training variance.
+Each agent is trained using Proximal Policy Optimisation (Schulman et al., 2017) via Stable-Baselines3 with a learning rate of $3 \times 10^{-4}$, $n$-steps of 128, and a minibatch size of 32. The discount factor is $\gamma = 0.99$, GAE parameter $\lambda = 0.95$, and the clipping range is 0.2. Each agent receives 5,000 timesteps of training per fold. Confidence estimation uses the following weights: historical accuracy 0.4, reward stability 0.3, prediction consistency 0.3. Calibration uses Platt scaling with a minimum of five pairs per agent before a non-identity mapping is fitted. The prediction consistency parameter is $k = 5$ samples. The label horizon is 5 trading days for all agents. Random seeds 42 through 46 are used to characterise training variance.
 
 ### 4.4 Baselines
 

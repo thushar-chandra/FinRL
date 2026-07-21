@@ -311,10 +311,10 @@ def fig_ablation_bars(results, filename="fig03_ablation_bars"):
 
 
 # ===================================================================
-# FIGURE 4: Regime timeline
+# FIGURE 4: Fold boundaries timeline
 # ===================================================================
 def fig_regime_timeline(data, filename="fig04_regime_timeline"):
-    """Market regime overlay."""
+    """Normalised price chart with fold boundaries."""
     prices = data["realized_prices"]
     fig, ax = plt.subplots(figsize=(8, 3))
     norm = prices / prices.iloc[0]
