@@ -17,7 +17,7 @@
   "artifacts": {
     "figures": [
       "plots\\publication\\figures\\fig01_cumulative_returns.pdf",
-      "plots\\publication\\figures\\fig02_reliability_diagrams.pdf",
+      "plots\\publication\\figures\\fig02_calibration_analysis.pdf",
       "plots\\publication\\figures\\fig03_ablation_bars.pdf",
       "plots\\publication\\figures\\fig04_regime_timeline.pdf"
     ],

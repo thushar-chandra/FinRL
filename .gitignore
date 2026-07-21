@@ -163,3 +163,14 @@ __pycache__/
 # Windows
 Thumbs.db
 Desktop.ini
+
+# CA-MARL: Stale upstream artifacts (removed from tracking)
+test_write.txt
+.github/FUNDING.yml
+.github/sponsor.md
+figs/okx.jpeg
+figs/Poster_FinRL.jpg
+figs/example_data.PNG
+figs/logo_size.jpg
+figs/performance.PNG
+1.66.32
